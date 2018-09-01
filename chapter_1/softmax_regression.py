@@ -35,7 +35,8 @@ train_step = tf.train.GradientDescentOptimizer(0.01).minimize(cross_entropy)
 # 创建一个Session。只有在Session中才能运行优化步骤train_step。
 sess = tf.InteractiveSession()
 # 运行之前必须要初始化所有变量，分配内存。
-tf.global_variables_initializer().run()
+# tf.global_variables_initializer().run()不能运行
+tf.initialize_all_variables().run()
 print('start training...')
 
 # 进行1000步梯度下降

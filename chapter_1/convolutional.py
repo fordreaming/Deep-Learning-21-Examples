@@ -83,5 +83,6 @@ if __name__ == '__main__':
         train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 
     # 训练结束后报告在测试集上的准确度
-    print("test accuracy %g" % accuracy.eval(feed_dict={
-        x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
+    # 容易导致死机
+    # print("test accuracy %g" % accuracy.eval(feed_dict={
+    #     x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
