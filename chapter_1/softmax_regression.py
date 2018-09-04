@@ -1,7 +1,11 @@
 # coding:utf-8
 # 导入tensorflow。
 # 这句import tensorflow as tf是导入TensorFlow约定俗成的做法，请大家记住。
+import cv2
 import tensorflow as tf
+
+import numpy as np
+from sys import path
 # 导入MNIST教学的模块
 from tensorflow.examples.tutorials.mnist import input_data
 # 与之前一样，读入MNIST数据
@@ -55,3 +59,22 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 # 在Session中运行Tensor可以得到Tensor的值
 # 这里是获取最终模型的正确率
 print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))  # 0.9185
+
+# 以下部分为读入图像并进行预测的过程
+im = cv2.imread('2.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float32)
+im = cv2.resize(im, (28, 28), interpolation=cv2.INTER_CUBIC)
+# 图片预处理
+# img_gray = cv2.cvtColor(im , cv2.COLOR_BGR2GRAY).astype(np.float32)
+# 数据从0~255转为-0.5~0.5
+img_gray = (im - (255 / 2.0)) / 255
+# cv2.imshow('out',img_gray)
+# cv2.waitKey(0)
+x_img = np.reshape(img_gray, [-1, 784])
+
+print x_img
+output = sess.run(y, feed_dict={x: x_img})
+print 'the y_con :   ', '\n', output
+print 'the predict is : ', np.argmax(output)
+
+# 关闭会话
+sess.close()

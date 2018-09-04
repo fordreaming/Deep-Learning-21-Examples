@@ -43,3 +43,8 @@ python convolutional.py
 - 本章简要介绍了TensorFlow 的tf.Tensor 类。tf.Tensor 类是TensorFlow的核心类，常用的占位符（tf.placeholder）、变量（tf.Variable）都可以看作特殊的Tensor。读者可以参阅https://www.tensorflow.org/programmers_guide/tensors 来更深入地学习它的原理。
 - 常用tf.Variable 类来存储模型的参数， 读者可以参阅[https://www.tensorflow.org/programmers_guide/variables](https://www.tensorflow.org/programmers_guide/variables) 详细了解它的运行机制， 文档的中文版地址为http://www.tensorfly.cn/tfdoc/how_tos/ variables.html。
 - 只有通过会话（Session）才能计算出tf.Tensor 的值。强烈建议读者 在学习完tf.Tensor 和tf.Variable 后，阅读https://www.tensorflow.org/programmers_guide/graphs 中的内容，该文档描述了TensorFlow 中 计算图和会话的基本运行原理，对理解TensorFlow 的底层原理有很 大帮助。
+
+
+
+#https://www.jianshu.com/p/2498f1191ab4
+#该链接讲的比较清楚，主要讲了模型的保存及恢复
