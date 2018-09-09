@@ -1,6 +1,7 @@
 # coding:utf-8
 # 导入tensorflow。
 # 这句import tensorflow as tf是导入TensorFlow约定俗成的做法，请大家记住。
+
 import cv2
 import tensorflow as tf
 
@@ -61,7 +62,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))  # 0.9185
 
 # 以下部分为读入图像并进行预测的过程
-im = cv2.imread('2.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float32)
+im = cv2.imread('3.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float32)
 im = cv2.resize(im, (28, 28), interpolation=cv2.INTER_CUBIC)
 # 图片预处理
 # img_gray = cv2.cvtColor(im , cv2.COLOR_BGR2GRAY).astype(np.float32)

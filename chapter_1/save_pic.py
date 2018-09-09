@@ -13,7 +13,7 @@ if os.path.exists(save_dir) is False:
     os.makedirs(save_dir)
 
 # 保存前20张图片
-for i in range(1):
+for i in range(20):
     # 请注意，mnist.train.images[i, :]就表示第i张图片（序号从0开始）
     image_array = mnist.train.images[i, :]
     # TensorFlow中的MNIST图片是一个784维的向量，我们重新把它还原为28x28维的图像。

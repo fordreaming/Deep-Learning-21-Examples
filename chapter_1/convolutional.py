@@ -77,31 +77,34 @@ if __name__ == '__main__':
     # sess.run(tf.global_variables_initializer())
     sess.run(tf.initialize_all_variables())
 
-    # 训练20000步
-    for i in range(500):
-        batch = mnist.train.next_batch(50)
-        # 每100步报告一次在验证集上的准确度
-        if i % 100 == 0:
-            train_accuracy = accuracy.eval(feed_dict={
-                x: batch[0], y_: batch[1], keep_prob: 1.0})
-            print("step %d, training accuracy %g" % (i, train_accuracy))
-        train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+    # # # 训练20000步
+    # for i in range(1000):
+    #     batch = mnist.train.next_batch(50)
+    #     # 每100步报告一次在验证集上的准确度
+    #     if i % 100 == 0:
+    #         train_accuracy = accuracy.eval(feed_dict={
+    #             x: batch[0], y_: batch[1], keep_prob: 1.0})
+    #         print("step %d, training accuracy %g" % (i, train_accuracy))
+    #     train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 
     # 训练结束后报告在测试集上的准确度
     # 容易导致死机
     # print("test accuracy %g" % accuracy.eval(feed_dict={
     #     x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
 
-    # 用saver 保存模型
+    # # # 用saver 保存模型
+    # saver = tf.train.Saver()
+    # saver.save(sess, "model.ckpt")
     saver = tf.train.Saver()
-    saver.save(sess, "model.ckpt")
+    saver.restore(sess, 'model.ckpt')
 
-    im = cv2.imread('2.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float32)
+    im = cv2.imread('MNIST_data/raw/mnist_train_11.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float32)
+    # im = cv2.imread('3.jpg', cv2.IMREAD_GRAYSCALE).astype(np.float32)
     im = cv2.resize(im, (28, 28), interpolation=cv2.INTER_CUBIC)
     # 图片预处理
     # img_gray = cv2.cvtColor(im , cv2.COLOR_BGR2GRAY).astype(np.float32)
     # 数据从0~255转为-0.5~0.5
-    # img_gray = (im - (255 / 2.0)) / 255
+    img_gray = (im - (255 / 2.0)) / 255
     img_gray = ((im)/255).astype(np.float32);
     # cv2.imshow('out',img_gray)
     # cv2.waitKey(0)
